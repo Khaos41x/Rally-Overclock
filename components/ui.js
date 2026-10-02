@@ -3,7 +3,7 @@
 export function Panel({ title, icon: Icon, right, children, className = "", bodyClass = "" }) {
   return (
     <section
-      className={`flex min-h-0 flex-col overflow-hidden rounded-2xl border border-edge bg-card ${className}`}
+      className={`panel flex min-h-0 flex-col overflow-hidden rounded-2xl border border-edge bg-card ${className}`}
     >
       <header className="flex items-center justify-between gap-4 border-b border-edge px-6 py-4">
         <div className="flex items-center gap-2.5">
@@ -30,7 +30,7 @@ export function Btn({
   title,
 }) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-35 select-none";
+    "btn inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-35 select-none";
   const sizes = {
     sm: "px-3.5 py-1.5 text-xs",
     md: "px-5 py-2 text-[13px]",

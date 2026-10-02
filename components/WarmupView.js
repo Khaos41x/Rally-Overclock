@@ -25,7 +25,7 @@ export default function WarmupView({ log, onComplete }) {
   const avg = times.length ? times.reduce((a, b) => a + b, 0) / times.length : 0;
 
   return (
-    <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 xl:grid-cols-[1fr_280px]">
+    <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_260px] gap-6">
       <SchulteTable onComplete={onComplete} />
 
       <div className="flex min-h-0 flex-col gap-6">

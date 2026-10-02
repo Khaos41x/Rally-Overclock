@@ -66,12 +66,12 @@ export default function Sidebar({
   disabled,
 }) {
   return (
-    <aside className="flex w-72 shrink-0 flex-col overflow-y-auto border-r border-edge bg-panel px-6 py-7">
+    <aside className="sidebar flex w-[280px] shrink-0 flex-col overflow-y-auto border-r border-edge bg-panel px-6 py-7">
       <div>
         <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-faint">
           Train
         </h2>
-        <nav className="flex flex-col gap-1.5">
+        <nav className="nav-stack flex flex-col gap-1.5">
           {MODULES.map((m) => {
             const Icon = MODULE_ICONS[m.id];
             const active = module === m.id;
@@ -81,8 +81,8 @@ export default function Sidebar({
                 type="button"
                 disabled={disabled}
                 onClick={() => setModule(m.id)}
-                className={`flex items-center gap-3.5 rounded-xl px-3.5 py-3 text-left transition-colors disabled:opacity-40 ${
-                  active ? "bg-soft" : "hover:bg-soft/60"
+                className={`nav-item flex items-center gap-3.5 rounded-xl px-3.5 py-3 text-left transition-colors disabled:opacity-40 ${
+                  active ? "is-active bg-soft" : "hover:bg-soft/60"
                 }`}
               >
                 <span

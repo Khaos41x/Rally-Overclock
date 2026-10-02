@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-ink text-neutral-200 font-sans antialiased">
+        <link rel="stylesheet" href="/theme.css" />
         {children}
       </body>
     </html>

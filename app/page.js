@@ -116,8 +116,8 @@ export default function Page() {
     }
     return (
       <RecallPanel
-        wpm={recall?.wpm}
-        wordCount={recall?.wordCount}
+        wpm={recall?.wpm || 0}
+        wordCount={recall?.wordCount || tokenize(text).length}
         onSave={saveRecall}
         onExit={() => setModule("overload")}
       />
@@ -135,10 +135,10 @@ export default function Page() {
   ]);
 
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-ink">
+    <div className="app-shell flex h-screen w-screen flex-col overflow-hidden bg-ink">
       <TopBar stats={stats} />
 
-      <div className="flex min-h-0 flex-1">
+      <div className="app-body flex min-h-0 flex-1">
         <Sidebar
           module={module}
           setModule={setModule}
@@ -149,15 +149,14 @@ export default function Page() {
           disabled={maintenance}
         />
 
-        <main className="flex min-h-0 flex-1 flex-col">
-          <div className="flex min-h-0 flex-1 flex-col p-8">{view}</div>
-          <footer className="flex items-center justify-between border-t border-edge bg-panel px-8 py-3 text-[11px] tracking-tight text-faint">
+        <main className="app-main flex min-h-0 flex-1 flex-col">
+          <div className="app-stage flex min-h-0 flex-1 flex-col overflow-hidden p-8">{view}</div>
+          <footer className="flex shrink-0 items-center justify-between border-t border-edge bg-panel px-8 py-3 text-[11px] tracking-tight text-faint">
             <span className="flex items-center gap-2">
               <Keyboard size={13} strokeWidth={1.8} />
-              Keys 1-4 switch modules &middot; Space play/pause &middot; R reset
-              &middot; Esc exit focus
+              1-4 switch modules · Space play/pause · R reset · Esc exit
             </span>
-            <span>Local-first &middot; your data never leaves this device</span>
+            <span>Local-first · data stays on this device</span>
           </footer>
         </main>
       </div>

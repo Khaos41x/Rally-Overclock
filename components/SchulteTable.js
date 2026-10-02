@@ -45,6 +45,7 @@ export default function SchulteTable({
     setNext(1);
     setErrors(0);
     setElapsed(0);
+    setWrongCell(null);
     startRef.current = performance.now();
     setRunning(true);
   }, []);
@@ -106,7 +107,7 @@ export default function SchulteTable({
           <span className="tnum text-sm font-semibold text-accent">
             {formatSeconds(Math.max(0, countdown ? timeLeft : elapsed) / 1000)}
           </span>
-          <Btn size="sm" variant={running ? "ghost" : "primary"} onClick={running ? stop : start}>
+          <Btn size="sm" variant={running ? "ghost" : "primary"} onClick={start}>
             {running ? <RotateCcw size={12} /> : <Play size={12} />}
             {running ? "Restart" : "Start"}
           </Btn>
@@ -114,23 +115,19 @@ export default function SchulteTable({
       }
       bodyClass="flex flex-col items-center justify-center p-6"
     >
-      <div className="mb-4 flex items-center gap-5 text-[11px] tracking-tight text-faint">
+      <div className="mb-5 flex w-full max-w-[min(64vh,100%)] items-center justify-between text-[12px] tracking-tight text-faint">
         <span className="tnum">
-          target <span className="font-semibold text-neutral-200">{next <= 25 ? next : 25}</span>
-          /25
+          Next <span className="font-semibold text-neutral-200">{next <= 25 ? next : 25}</span>
         </span>
         <span className="flex items-center gap-1.5">
-          <Crosshair size={11} /> keep gaze on center dot
+          <Crosshair size={11} /> Keep gaze on the center
         </span>
         <span className="tnum">
-          progress{" "}
-          <span className="font-semibold text-neutral-200">
-            {Math.min(next - 1, 25)}/25
-          </span>
+          {Math.min(next - 1, 25)} / 25
         </span>
       </div>
 
-      <div className="relative grid aspect-square w-full max-w-[min(64vh,100%)] grid-cols-5 grid-rows-5 gap-2">
+      <div className="schulte-grid relative grid aspect-square w-full max-w-[min(64vh,100%)] grid-cols-5 grid-rows-5 gap-2">
         {order.map((value) => {
           const isDone = value < next;
           const isWrong = wrongCell === value;
@@ -139,7 +136,7 @@ export default function SchulteTable({
               key={value}
               type="button"
               onClick={() => handleClick(value)}
-              className={`tnum flex items-center justify-center rounded-md border text-lg font-semibold transition-colors sm:text-2xl ${
+              className={`schulte-cell tnum flex items-center justify-center rounded-md border text-lg font-semibold transition-colors sm:text-2xl ${
                 isWrong
                   ? "border-red-500 bg-red-500/20 text-red-300"
                   : isDone

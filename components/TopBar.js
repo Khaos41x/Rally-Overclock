@@ -18,7 +18,7 @@ function Metric({ icon: Icon, value, label }) {
 
 export default function TopBar({ stats }) {
   return (
-    <header className="flex items-center justify-between border-b border-edge bg-panel px-8 py-5">
+    <header className="topbar flex items-center justify-between border-b border-edge bg-panel px-8 py-5">
       <div className="flex items-center gap-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent">
           <Activity size={20} className="text-black" strokeWidth={2.2} />
